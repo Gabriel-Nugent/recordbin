@@ -1,0 +1,36 @@
+.SignIn {
+  height: 100%;
+}
+
+#signin_content {
+  background-color: blue;
+  height: calc(100% - 115px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#signin_content #content {
+  background-color: white;
+  height: 400px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#signin_content form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#signin_content input {
+  margin-bottom: 20px;
+  width: 70%;
+  height: 30px;
+}
+

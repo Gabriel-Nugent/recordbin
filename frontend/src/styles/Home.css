@@ -1,0 +1,35 @@
+:root {
+  --main-text-color: black;
+}
+
+#root {
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+#home {
+  background-color: blue;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#album_of_the_day {
+  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#album_of_the_day img{
+  height: 200px;
+  width: 200px;
+}
+
+#news_section {
+  background-color: yellow;
+}
