@@ -16,11 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import re_path as url
-from recordbin.api.views import *
+from rest_framework.routers import DefaultRouter
+
+from recordbin.views import *
+
+router = DefaultRouter()
+router.register(r"artist", ArtistViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', ReactView.as_view(), name="anything"),
-    path('api/', include('backend.api.urls'))
+    path('api/', include(router.urls)),
+    path('mbdb/artist-search/', Artist.as_view()),
+    path('mbdb/release-search/', Release.as_view()),
 ]
