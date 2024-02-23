@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 function Home() {
   return (
     <div className="App">
-      <Toolbar signedin = {false}/>
+      <Toolbar signedin = {false} page = {"home"}/>
       <HomeBody />
       <Footer />
     </div>

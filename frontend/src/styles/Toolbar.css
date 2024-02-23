@@ -15,9 +15,14 @@ header form {
   background-color: aqua;
 }
 
-header img {
+#logo {
   height: 40px;
   width: 40px;
+}
+
+header img {
+  height: 100%;
+  width: 100%;
 }
 
 header a {

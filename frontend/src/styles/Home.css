@@ -1,5 +1,6 @@
 :root {
   --main-text-color: black;
+  --scale: 1;
 }
 
 #root {
@@ -10,8 +11,13 @@ html, body {
   height: 100%;
 }
 
+.App {
+  height: 100%;
+}
+
 #home {
   background-color: blue;
+  height: calc(100% - 155px);
   padding: 20px;
   display: flex;
   flex-direction: column;

@@ -1,14 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import { 
+  createBrowserRouter,
+  createRoutesFromElements, 
+  RouterProvider, 
+  Route 
+} from "react-router-dom";
+
 import './styles/index.css';
 import Home from './Home';
-import SiginIn from './SignIn'
 import reportWebVitals from './reportWebVitals';
+import SignIn from './SignIn';
+import Search from './Search';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/'>
+      <Route index element={<Home />} />
+      <Route path='signin' element={<SignIn />}/>
+      <Route path='search/:params' element={<Search />}/>
+    </Route>
+  )
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SiginIn />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

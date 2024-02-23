@@ -1,0 +1,4 @@
+#results {
+  background-color: blue;
+  height: calc(100% - 115px);
+}
