@@ -15,17 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 
 from recordbin.views import *
 
-router = DefaultRouter()
-router.register(r"artist", ArtistViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('mbdb/artist-search/', Artist.as_view()),
-    path('mbdb/release-search/', Release.as_view()),
+    path('api/profile/', Profile.as_view(), name='profile_api'),
+    path('search-artist/', search_artist, name='search_artist'),
+    path('search-release/', search_release, name='search_release'),
+    path('get-artist/', get_artist, name='get_artist'),
+    path('get-release/', get_release, name='get_release'),
+    path('releases-by-artist/', releases_by_artist, name='releases_by_artist'),
+
 ]
