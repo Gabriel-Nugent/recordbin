@@ -3,7 +3,7 @@
 }
 
 #signin_content {
-  background-color: blue;
+  background-color: var(--default-primary-color);
   height: calc(100% - 115px);
   display: flex;
   flex-direction: column;
@@ -11,14 +11,38 @@
   align-items: center;
 }
 
+#content h1 {
+  color: var(--default-primary-color);
+}
+
 #signin_content #content {
-  background-color: white;
+  background-color: var(--default-text-color);
+  box-shadow: 0px 0px 10px 1px var(--default-tertiary-color);
   height: 400px;
-  width: 500px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
+}
+
+#signin_content .button {
+  margin-top: 20px;
+  justify-self: center;
+  cursor: pointer;
+  height: 35px;
+  width: 313px;
+  border-radius: 3px;
+  border: 2px solid transparent;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: var(--default-tertiary-color);
+  color: var(--default-text-color);
+}
+
+#content .button:hover {
+  border: 2px solid transparent;
+  background-color: var(--default-quaternary-color);
 }
 
 #signin_content form {
@@ -28,9 +52,51 @@
   align-items: center;
 }
 
-#signin_content input {
-  margin-bottom: 20px;
-  width: 70%;
+#content .input-container {
+  background-color: var(--default-text-color);
+  border-bottom: 2px solid var(--default-secondary-color);
   height: 30px;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition-duration: 150ms;
+}
+
+#content .input-container:hover, #content .input-container:focus-within {
+  border-bottom: 2px solid var(--default-tertiary-color);
+}
+
+#content .input-container div {
+  color: var(--default-primary-color);
+  height: 100%;
+  width: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#signin_content input {
+  background-color: var(--default-text-color);
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  transition-duration: 100ms;
+}
+
+#content label {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  color: var(--default-primary-color)
+}
+
+#content label input {
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 

@@ -1,23 +1,24 @@
 header {
-  background-color: red;
+  background-color: var(--default-secondary-color);
   height: 45px;
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: center;
 }
 
 #right_links {
+  padding-right: 10px;
   display: flex;
-}
-
-header form {
-  background-color: aqua;
+  align-items: center;
+  justify-content: end;
 }
 
 #logo {
-  height: 40px;
-  width: 40px;
+  align-self: center;
+  font-weight: 900;
+  font-size: 24px;
+  margin-right: 10px;
 }
 
 header img {
@@ -26,7 +27,28 @@ header img {
 }
 
 header a {
-  margin-left: 10px;
+  margin-left: 15px;
   text-decoration: none;
   color: var(--main-text-color);
+  transition-duration: 100ms;
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+header a:hover {
+  color: var(--default-tertiary-color);
+}
+
+#create-account {
+  background-color: var(--default-tertiary-color);
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+#create-account:hover {
+  color: var(--main-text-color);
+  background-color: var(--default-quaternary-color);
 }

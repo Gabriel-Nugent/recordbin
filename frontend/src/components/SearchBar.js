@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+
+import '../styles/SearchBar.css'
 
 const SearchBar = () => {
   const [search_input, set_search_input] = useState("");
@@ -13,7 +17,7 @@ const SearchBar = () => {
   const search = () => {
     let search_param = search_input;
     search_param = search_param.trim().replace(/\s+/g, '-').toLowerCase();
-    navigate(`/search/${search_param}`);
+    navigate(`/search/${search_param}/page-1`);
   }
 
   const handleEnter = (e) => {
@@ -23,19 +27,24 @@ const SearchBar = () => {
   }
 
   return(
-    <form onSubmit={search}>
-      <input 
+    <form onSubmit={search} className='searchbar'>
+      <input className='bar'
         type='search'
         autoComplete='on'
         minLength={3}
-        placeholder='Search here'
+        placeholder='Search here...'
+        autocorrect="off" 
+        autocapitalize="off" 
+        spellcheck="false"
         onKeyDown={handleEnter}
         onChange={handle_change}
       />
-      <input 
+      <button className='button'
         type='submit' 
-        value={'search'}
-      />
+        value={'Search'}
+      >
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      </button>
     </form>
   )
 };

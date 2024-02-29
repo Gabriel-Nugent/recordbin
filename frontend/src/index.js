@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements, 
   RouterProvider, 
-  Route 
+  Route,
 } from "react-router-dom";
 
 import './styles/index.css';
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
     <Route path='/'>
       <Route index element={<Home />} />
       <Route path='signin' element={<SignIn />}/>
-      <Route path='search/:params' element={<Search />}/>
+      <Route path='search/:params/:pagenum' element={<Search />}/>
     </Route>
   )
 )

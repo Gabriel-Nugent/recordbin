@@ -8,10 +8,10 @@ function Toolbar(props) {
     return (
       <header>
         <Link to="/" id="logo">
-          <img src={logo} alt='RecordBin Logo'/>
+          RecordBin.
         </Link>
+        <SearchBar />
         <div id="right_links">
-          <SearchBar />
         </div>
       </header>
     );
@@ -20,11 +20,11 @@ function Toolbar(props) {
     return (
       <header>
         <Link to="/" id="logo">
-          <img src={logo} alt='RecordBin Logo'/>
+          RecordBin.
         </Link>
+        <SearchBar />
         <div id="right_links">
-          <SearchBar />
-          <Link id="create_account" >Create Account</Link>
+          <Link id="create-account" >Create Account</Link>
         </div>
       </header>
     );
@@ -33,11 +33,11 @@ function Toolbar(props) {
     return (
       <header>
         <Link to="/" id="logo">
-          <img src={logo} alt='RecordBin Logo'/>
+          RecordBin.
         </Link>
+        <SearchBar />
         <div id="right_links">
-          <SearchBar />
-          <Link to="/signin" id="sign in">Sign in</Link>
+          <Link to="/signin" id="sign-in">Sign in</Link>
         </div>
       </header>
     );
@@ -46,12 +46,12 @@ function Toolbar(props) {
     return (
       <header>
         <Link to="/" id="logo">
-          <img src={logo} alt='RecordBin Logo'/>
+          RecordBin.
         </Link>
+        <SearchBar />
         <div id="right_links">
-          <SearchBar />
-          <Link id="create_account" >Create Account</Link>
-          <Link to="/signin" id="sign in">Sign in</Link>
+          <Link to="/signin" id="sign-in">Sign in</Link>
+          <Link id="create-account" >Create Account</Link>
         </div>
       </header>
     );

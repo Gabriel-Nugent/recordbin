@@ -1,4 +1,7 @@
 #results {
-  background-color: blue;
+  background-color: var(--default-primary-color);
   height: calc(100% - 115px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

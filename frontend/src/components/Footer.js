@@ -1,9 +1,13 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import '../styles/Footer.css'
 
 function Footer() {
   return(
     <footer>
-      Hello
+      <div>
+        Developed by: [Gabriel Nugent] , [] , [] for our Human Factors Project
+      </div>
     </footer>
   );
 }

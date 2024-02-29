@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faKey } from '@fortawesome/free-solid-svg-icons'
 
 import './styles/SignIn.css';
 
@@ -25,23 +27,31 @@ function SignIn() {
       <Toolbar signedin = {false} page = {"signin"}/>
       <main id='signin_content'>
         <div id='content'>
-          <h1>Login to your Account</h1>
+          <h1>Login</h1>
           <form onSubmit={handleSubmit}>
-            <label> Username
+            <div className='input-container'>
+              <div>
+                <FontAwesomeIcon icon={faUser} />
+              </div>
               <input 
                 type='text' 
                 value={username}
+                placeholder='Username'
                 onChange={(e) => setUsername(e.target.value)}
-              />
-            </label>
-            <label> Password
+              /> 
+            </div>
+            <div className='input-container'>
+              <div>
+                <FontAwesomeIcon icon={faKey} />
+              </div>
               <input 
                 type='password' 
                 value={password}
+                placeholder='Password'
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </label>
-            <input type='submit' value={"login"}/>
+            </div>
+            <input className='button' type='submit' value={"Sign in"}/>
           </form>
         </div>
       </main>
