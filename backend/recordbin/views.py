@@ -121,3 +121,5 @@ def releases_by_artist(request):
                 return JsonResponse({'error': 'An error occurred while fetching release data.'}, status=500)
         else:
             return JsonResponse({'error': 'Please provide an artist id.'}, status=400)
+        
+
