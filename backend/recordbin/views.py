@@ -4,6 +4,7 @@ from rest_framework import status
 from django.http import JsonResponse
 from .models import *
 from .serializers import ProfileSerializer
+from .serializers import UserRegistrationSerializer
 
 import musicbrainzngs
 
@@ -29,6 +30,15 @@ class Profile(APIView):
         profile = Profile.objects.get(user=request.user)
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+# Handles the creation of a new user
+class UserRegistration(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # MUSICBRAINZ API REQUESTS 
 # Returns a list of relevant searches by artist name 

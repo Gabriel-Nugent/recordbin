@@ -27,5 +27,6 @@ urlpatterns = [
     path('get-artist/', get_artist, name='get_artist'),
     path('get-release/', get_release, name='get_release'),
     path('releases-by-artist/', releases_by_artist, name='releases_by_artist'),
+    path('register/', UserRegistration.as_view(), name='register'),
 
 ]
