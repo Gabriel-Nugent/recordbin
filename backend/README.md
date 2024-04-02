@@ -3,11 +3,12 @@ To test backend with MySQL (windows)
 1. download MySQLInstaller
 2. open task manager and go to services tab
 3. start MySQL80 if not already running
-4. open MySQL workbench and set username and password
+4. open MySQL workbench and set username and password, then create a database to store the tables from recordbin (CREATE DATABASE database_name_here)
 5. run 'pip install mysql-connector-python' NOTE: I use mysqlconnector because the offical SQL Client was not working for me 
 6. go to settings.py and navigate to database section, ensure the engine is set to 'mysql-connector-pyton' and edit username and password to match the credentials you created in MySQL Workbench
-7. run command 'python manage.py makemigrations' and then 'python manage.py migrate' if running MySQL for the first time or made changes to models
-8. go to MySQL Workbench to view tables
+7. make sure the database name is one that has already been created in MySQL workbench
+8. run command 'python manage.py makemigrations' and then 'python manage.py migrate' if running MySQL for the first time or made changes to models
+9. go to MySQL Workbench to view tables
 
 To test user registration backend via Postman
 
