@@ -1,0 +1,36 @@
+To test backend with MySQL (windows)
+
+1. download MySQLInstaller
+2. open task manager and go to services tab
+3. start MySQL80 if not already running
+4. open MySQL workbench and set username and password
+5. go to settings.py and navigate to database section, ensure username and password match the credentials you created in MySQL Workbench
+6. run command 'python manage.py makemigrations' and then 'python manage.py migrate' if running MySQL for the first time or made changes to models
+7. go to MySQL Workbench to view tables
+
+To test user registration backend via Postman
+
+1. run 'python manage.py runserver'
+2. open Postman
+3. select POST for method with the following url: 'http://localhost:8000/register/'
+4. go to headers section and set content type to 'json'
+5. go to body section and choose raw, then enter user info to register in the following format
+   {
+   "username: "testuser",
+   "email": "testemail@example.com",
+   "password": "password"
+   }
+6. send request
+
+To test user authentication backend via Postman
+
+1. run 'python manage.py runserver'
+2. open Postman
+3. select POST for method with the following url: http://localhost:8000/login/
+4. go to headers section and set content type to 'json'
+5. enter an existing users login credentials in the following format:
+   {
+   "username": "testuser",
+   "password": "password123"
+   }
+6. send request

@@ -1,7 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
+from django.contrib.auth import authenticate 
 from .models import *
 from .serializers import ProfileSerializer
 from .serializers import UserRegistrationSerializer
@@ -33,12 +36,27 @@ class Profile(APIView):
     
 # Handles the creation of a new user
 class UserRegistration(APIView):
+    permission_classes = [AllowAny]
     def post(self, request, *args, **kwargs):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# Handles user login
+class UserLogin(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key}, status=status.HTTP_200_OK)
+        return Response({'message': 'Invalid login credentials'}, status=status.HTTP_400_BAD_REQUEST)
+    
+
     
 # MUSICBRAINZ API REQUESTS 
 # Returns a list of relevant searches by artist name 
