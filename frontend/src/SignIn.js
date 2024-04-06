@@ -1,25 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 import './styles/SignIn.css';
 
 import Toolbar from "./components/Toolbar.js";
 import Footer from "./components/Footer.js"
 
+const client = axios.create({
+  baseURL: "http://127.0.0.1:8000"
+})
+
 function SignIn() {
+
+  const [currentUser, setCurrentUser] = useState();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`The username you entered was: ${username}`);
-    alert(`The password you entered was: ${password}`);
+  const handleSubmit = async (event) => {
+    // event.preventDefault();
+    // alert(`The username you entered was: ${username}`);
+    // alert(`The password you entered was: ${password}`);
 
-    navigate("/");
+    // navigate("/");
+    event.preventDefault();
+    try {
+      const response = await client.post('/login/', {
+        username: username,
+        password: password
+      });
+      console.log('Login successful:', response.data);
+
+      // Redirect to the desired page upon successful login
+      navigate("/");
+    } catch (error) {
+      // Handle login error
+      console.error('Login failed:', error);
+      alert('Login failed. Please check your credentials and try again.');
+    }
   }
 
   return (
