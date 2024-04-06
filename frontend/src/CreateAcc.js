@@ -12,14 +12,20 @@ import background from "./images/recordbin.png"
 
 function CreateAcc() {
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email_data, setEmail] = useState("");
+  const [username_data, setUsername] = useState("");
+  const [password_data, setPassword] = useState("");
   const navigate = useNavigate();
 
   // called when 'Create Account' button is pressed
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
+    // values from input fields
+    const email = email_data;
+    const username = username_data;
+    const password = password_data;
+
     // redirects user to homepage
     // navigate("/");
   }
@@ -40,6 +46,8 @@ function CreateAcc() {
                     className='CreateAcc'
                     id='email'
                     placeholder='ex: thomyorke@email.com'
+                    value={email_data}
+                    onChange={e => setEmail(e.target.value)}
                     autoComplete=''
                   />
                 </div>
@@ -51,6 +59,8 @@ function CreateAcc() {
                     className='CreateAcc'
                     id='username'
                     placeholder='ex: BjorkFan01'
+                    value={username_data}
+                    onChange={e => setUsername(e.target.value)}
                     autoComplete=''
                   />
                 </div>
@@ -63,6 +73,8 @@ function CreateAcc() {
                     className='CreateAcc' 
                     id='password'
                     placeholder='ex: BiggestThief123!'
+                    value={password_data}
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </div>
               </label>
