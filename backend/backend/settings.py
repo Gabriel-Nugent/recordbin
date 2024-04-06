@@ -83,8 +83,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'data.sqlite3',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'recordbin',
+        'USER': 'root',
+        'PASSWORD': 'password', #enter password created during MySQL setup
+        'HOST': 'localhost',  # Default is 'localhost' or '127.0.0.1'
+        'PORT': '3306',  # Default is 3306
+        'OPTIONS': {
+            'autocommit': True,
+        },
     }
 }
 
