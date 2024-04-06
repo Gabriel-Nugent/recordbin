@@ -1,9 +1,10 @@
-div.signin {
+div.CreateAcc {
   height: 100%;
 }
 
-div.signin-area {
-  height: calc(100% - 115px);
+div.CreateAcc-area {
+  height: calc(90%);
+  min-height: 800px;
   width: 100%;
   background-color: var(--default-primary-color);
   display: flex;
@@ -11,7 +12,7 @@ div.signin-area {
   justify-content: center;
 }
 
-main.signin {
+main.CreateAcc {
   background-color: transparent;
   height: 600px;
   width: 800px;
@@ -20,7 +21,7 @@ main.signin {
   border-radius: 5px;
 }
 
-div.signin-input {
+div.CreateAcc-input {
   height: 100%;
   background-color: rgb(247, 244, 244);
   border: solid 5px rgb(247, 244, 244);
@@ -31,23 +32,25 @@ div.signin-input {
   align-items: center;
 }
 
-div.signin-input h2 {
+div.CreateAcc-input h2 {
   color: var(--default-secondary-color);
-  margin-top: 60px;
-  font-size: 3em;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  font-size: 2.5em;
   font-weight: 600;
+  text-align: center;
 }
 
-h3.signin {
+h3.CreateAcc {
   color: var(--default-primary-color);
   margin: 0px;
   margin-top: 30px;
   margin-bottom: 5px;
   font-weight: 600;
-  font-size: 1.5em;
+  font-size: 1.25em;
 }
 
-form.signin {
+form.CreateAcc {
   display: flex;
   flex-direction: column;
   height: 60%;
@@ -64,7 +67,7 @@ div.input-area {
   padding-right: 10px;
 }
 
-input.signin {
+input.CreateAcc {
   height: 80%;
   width: 100%;
   margin: 0px 0px 0px 10px;
@@ -73,9 +76,11 @@ input.signin {
   font-size: 18px;
 }
 
-button.signin {
-  height: 35px;
-  margin-top: 50px;
+button.CreateAcc {
+  height: 50px;
+  margin-top: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: white;
   font-size: 20px;
   border: var(--default-tertiary-color);
@@ -84,12 +89,35 @@ button.signin {
   transition-duration: 200ms;
 }
 
-button.signin:hover {
+button.CreateAcc:hover {
   cursor: pointer;
   background-color: var(--default-quaternary-color);
 }
 
-section.signin {
+form p.CreateAcc {
+  color: var(--default-primary-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#signin-link {
+  margin-left: 3px;
+  text-decoration: none;
+  color: var(--default-tertiary-color);
+  transition-duration: 100ms;
+  padding: 1px 2px 1px 2px;
+  border: 2px solid transparent;
+  background-color: transparent;
+}
+
+#signin-link:hover {
+  color:var(--default-quaternary-color);
+  background-color: grey;
+  border: 2px solid grey;
+  border-radius: 10%;
+}
+
+section.CreateAcc {
   height: 100%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -102,7 +130,7 @@ section.signin {
   align-items: center;
 }
 
-section.signin h1{
+section.CreateAcc h1{
   margin-top: 20px;
   background-color: var(--default-secondary-color);
   border-top: 1px solid var(--default-tertiary-color);
@@ -112,7 +140,7 @@ section.signin h1{
   text-align: center;
 }
 
-section.signin p {
+section.CreateAcc p {
   background-color: var(--default-secondary-color);
   width: 100%;
   text-align: center;
@@ -121,7 +149,7 @@ section.signin p {
   margin-top: 43px;
 }
 
-img.signin {
+img.CreateAcc {
   width: calc(75% - 20px);
   position: absolute;
   bottom: 0;

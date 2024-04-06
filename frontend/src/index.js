@@ -13,22 +13,25 @@ import Home from './Home';
 import reportWebVitals from './reportWebVitals';
 import SignIn from './SignIn';
 import Search from './Search';
+import Profile from './Profile';
+import CreateAcc from './CreateAcc';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/'>
       <Route index element={<Home />} />
       <Route path='signin' element={<SignIn />}/>
+      <Route path='create-account' element={<CreateAcc/>} />
       <Route path='search/:params/:pagenum' element={<Search />}/>
+      <Route path='release/:artist/:name' />
+      <Route path='profile/:user_id' element={<Profile />}/>
     </Route>
   )
 )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );
 
 // If you want to start measuring performance in your app, pass a function

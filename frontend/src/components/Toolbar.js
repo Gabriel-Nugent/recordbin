@@ -1,40 +1,52 @@
 import { Link } from "react-router-dom";
 import SearchBar from './SearchBar'
-import logo from '../img/recordbin.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+
 import '../styles/Toolbar.css'
 
 function Toolbar(props) {
   if (props.signedin) {
     return (
       <header>
-        <Link to="/" id="logo">
-          RecordBin.
-        </Link>
+        <div id="logo-container">
+          <Link to="/" id="logo">
+            RecordBin.
+          </Link>
+        </div>
         <SearchBar />
         <div id="right_links">
+          <Link to="/profile/me" className="pfp" id="pfp-link"> 
+            <FontAwesomeIcon icon={faCircleUser} size="2xl"/>
+            Username
+          </Link>
         </div>
-      </header>
+    </header>
     );
   }
   else if (props.page === "signin") {
     return (
       <header>
-        <Link to="/" id="logo">
-          RecordBin.
-        </Link>
+        <div id="logo-container">
+          <Link to="/" id="logo">
+            RecordBin.
+          </Link>
+        </div>
         <SearchBar />
         <div id="right_links">
-          <Link id="create-account" >Create Account</Link>
+        <Link to="/create-account" id="create-account" >Create Account</Link>
         </div>
       </header>
     );
   }
-  else if (props.page == "create") {
+  else if (props.page == "CreateAcc") {
     return (
       <header>
-        <Link to="/" id="logo">
-          RecordBin.
-        </Link>
+        <div id="logo-container">
+          <Link to="/" id="logo">
+            RecordBin.
+          </Link>
+        </div>
         <SearchBar />
         <div id="right_links">
           <Link to="/signin" id="sign-in">Sign in</Link>
@@ -45,13 +57,15 @@ function Toolbar(props) {
   else {
     return (
       <header>
-        <Link to="/" id="logo">
-          RecordBin.
-        </Link>
+        <div id="logo-container">
+          <Link to="/" id="logo">
+            RecordBin.
+          </Link>
+        </div>
         <SearchBar />
         <div id="right_links">
           <Link to="/signin" id="sign-in">Sign in</Link>
-          <Link id="create-account" >Create Account</Link>
+          <Link to="/create-account" id="create-account" >Create Account</Link>
         </div>
       </header>
     );
