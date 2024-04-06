@@ -5,7 +5,7 @@ import Welcome from "./Welcome";
 function HomeBody() {
   return (
     <main id="home">
-      <Welcome></Welcome>
+      Welcome to RecordBin.
     </main>
   );
 }

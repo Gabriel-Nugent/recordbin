@@ -12,6 +12,8 @@ html, body {
 
 #home {
   background-color: var(--default-primary-color);
+  background-size: 56px 56px;
+  background-position: 0 0,28px 28px;
   height: calc(100% - 155px);
   padding: 20px;
   display: flex;

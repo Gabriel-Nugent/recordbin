@@ -17,7 +17,7 @@ const SearchBar = () => {
   const search = () => {
     let search_param = search_input;
     search_param = search_param.trim().replace(/\s+/g, '-').toLowerCase();
-    navigate(`/search/${search_param}/page-1`);
+    navigate(`/search/${search_param}/1`);
   }
 
   const handleEnter = (e) => {
@@ -32,10 +32,10 @@ const SearchBar = () => {
         type='search'
         autoComplete='on'
         minLength={3}
-        placeholder='Search here...'
-        autocorrect="off" 
-        autocapitalize="off" 
-        spellcheck="false"
+        placeholder='Search for albums here...'
+        autoCorrect="off" 
+        autoCapitalize="off" 
+        spellCheck="false"
         onKeyDown={handleEnter}
         onChange={handle_change}
       />
@@ -43,7 +43,7 @@ const SearchBar = () => {
         type='submit' 
         value={'Search'}
       >
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <FontAwesomeIcon icon={faMagnifyingGlass}/>
       </button>
     </form>
   )

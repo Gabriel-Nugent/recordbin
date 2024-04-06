@@ -7,6 +7,7 @@ import './styles/SignIn.css';
 
 import Toolbar from "./components/Toolbar.js";
 import Footer from "./components/Footer.js"
+import background from "./images/recordbin.png"
 
 function SignIn() {
 
@@ -23,38 +24,45 @@ function SignIn() {
   }
 
   return (
-    <div className="SignIn">
+    <div className="signin">
       <Toolbar signedin = {false} page = {"signin"}/>
-      <main id='signin_content'>
-        <div id='content'>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit}>
-            <div className='input-container'>
-              <div>
-                <FontAwesomeIcon icon={faUser} />
-              </div>
-              <input 
-                type='text' 
-                value={username}
-                placeholder='Username'
-                onChange={(e) => setUsername(e.target.value)}
-              /> 
-            </div>
-            <div className='input-container'>
-              <div>
-                <FontAwesomeIcon icon={faKey} />
-              </div>
-              <input 
-                type='password' 
-                value={password}
-                placeholder='Password'
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <input className='button' type='submit' value={"Sign in"}/>
-          </form>
-        </div>
-      </main>
+      <div className='signin-area'>
+        <main className="signin">
+          <div className='signin-input'>
+            <h2> Login </h2>
+            <form className='signin'>
+              <label or="username" className='signin'>
+                <h3 className='signin'>Email or Username</h3>
+                <div className='input-area'>
+                  <FontAwesomeIcon icon={faUser} size='lg'/>
+                  <input type='text'
+                    className='signin'
+                    id='username'
+                    placeholder='ex: thomyorke@email.com'
+                  />
+                </div>
+              </label>
+              <label for="password" className='signin'>
+                <h3 className='signin'>Password</h3>
+                <div className='input-area'>
+                  <FontAwesomeIcon icon={faKey} size='lg'/>
+                  <input type='password'
+                    className='signin' 
+                    id='password'
+                    placeholder='ex: BiggestThief123!'
+                  />
+                </div>
+              </label>
+              <button className="signin" type='submit'> Login</button>
+            </form>
+          </div>
+          <section className="signin">
+            <h1> Welcome Back to RecordBin. </h1>
+            <p> log in using your <strong>Email</strong> and <strong>Password</strong> </p>
+            <img className="signin" src={background} />
+          </section>
+        </main>
+      </div>
       <Footer />
     </div>
   );

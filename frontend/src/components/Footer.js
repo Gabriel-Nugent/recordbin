@@ -6,7 +6,7 @@ function Footer() {
   return(
     <footer>
       <div>
-        Developed by: [Gabriel Nugent] , [] , [] for our Human Factors Project
+        Developed by: [Gabriel Nugent] , [Dustin Reyes] , [Caleb Alvarez] for our Human Factors Project
       </div>
     </footer>
   );
