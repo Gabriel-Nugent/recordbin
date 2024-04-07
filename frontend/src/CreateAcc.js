@@ -3,31 +3,45 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faKey, faCheck, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
+import axios from 'axios';
 import './styles/CreateAcc.css'
 
 import Toolbar from "./components/Toolbar.js";
 import Footer from "./components/Footer.js"
 import background from "./images/recordbin.png"
 
-function CreateAcc() {
+const client = axios.create({
+  baseURL: "http://127.0.0.1:8000"
+})
 
-  const [email_data, setEmail] = useState("");
-  const [username_data, setUsername] = useState("");
-  const [password_data, setPassword] = useState("");
+function CreateAcc() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const navigate = useNavigate();
 
-  // called when 'Create Account' button is pressed
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
+    if (password !== passwordConfirmation) {
+      alert("Passwords do not match.");
+      return;
+    }
 
-    // values from input fields
-    const email = email_data;
-    const username = username_data;
-    const password = password_data;
+    try {
+      const response = await client.post('/register/', {
+        email: email,
+        username: username,
+        password: password
+      });
+      console.log('registration successful:', response.data);
 
-    // redirects user to homepage
-    // navigate("/");
+      // Redirect to the home page upon successful registration
+      navigate("/");
+    } catch (error) {
+      console.error('registration failed:', error);
+      alert('Registration failed. Please try again.');
+    }
   }
 
   return (
@@ -37,7 +51,7 @@ function CreateAcc() {
         <main className="CreateAcc">
           <div className='CreateAcc-input'>
             <h2> Create a New Account </h2>
-            <form className='CreateAcc'>
+            <form className='CreateAcc' onSubmit={handleSubmit}>
               <label htmlFor="email" className='CreateAcc'>
                 <h3 className='CreateAcc'>Email</h3>
                 <div className='input-area'>
@@ -46,7 +60,7 @@ function CreateAcc() {
                     className='CreateAcc'
                     id='email'
                     placeholder='ex: thomyorke@email.com'
-                    value={email_data}
+                    value={email}
                     onChange={e => setEmail(e.target.value)}
                     autoComplete=''
                   />
@@ -59,7 +73,7 @@ function CreateAcc() {
                     className='CreateAcc'
                     id='username'
                     placeholder='ex: BjorkFan01'
-                    value={username_data}
+                    value={username}
                     onChange={e => setUsername(e.target.value)}
                     autoComplete=''
                   />
@@ -73,7 +87,7 @@ function CreateAcc() {
                     className='CreateAcc' 
                     id='password'
                     placeholder='ex: BiggestThief123!'
-                    value={password_data}
+                    value={password}
                     onChange={e => setPassword(e.target.value)}
                   />
                 </div>
@@ -86,6 +100,8 @@ function CreateAcc() {
                     className='CreateAcc' 
                     id='password-confirmation'
                     placeholder='ex: BiggestThief123!'
+                    value={passwordConfirmation}
+                    onChange={e => setPasswordConfirmation(e.target.value)}
                   />
                 </div>
               </label>

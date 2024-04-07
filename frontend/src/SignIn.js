@@ -16,22 +16,15 @@ const client = axios.create({
 
 function SignIn() {
 
-  const [currentUser, setCurrentUser] = useState();
-
-  const [username, setUsername] = useState("");
+  const [identifier, setIdentifier] = useState(""); // Change 'username' to 'identifier'
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    // event.preventDefault();
-    // alert(`The username you entered was: ${username}`);
-    // alert(`The password you entered was: ${password}`);
-
-    // navigate("/");
     event.preventDefault();
     try {
       const response = await client.post('/login/', {
-        username: username,
+        identifier: identifier, // Send 'identifier' instead of 'username'
         password: password
       });
       console.log('Login successful:', response.data);
@@ -52,15 +45,18 @@ function SignIn() {
         <main className="signin">
           <div className='signin-input'>
             <h2> Login </h2>
-            <form className='signin'>
+            <form className='signin' onSubmit={handleSubmit}>
               <label or="username" className='signin'>
                 <h3 className='signin'>Email or Username</h3>
                 <div className='input-area'>
                   <FontAwesomeIcon icon={faUser} size='lg'/>
-                  <input type='text'
+                  <input
+                    type='text'
                     className='signin'
                     id='username'
                     placeholder='ex: thomyorke@email.com'
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
                   />
                 </div>
               </label>
@@ -68,10 +64,13 @@ function SignIn() {
                 <h3 className='signin'>Password</h3>
                 <div className='input-area'>
                   <FontAwesomeIcon icon={faKey} size='lg'/>
-                  <input type='password'
+                  <input
+                    type='password'
                     className='signin' 
                     id='password'
                     placeholder='ex: BiggestThief123!'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </label>

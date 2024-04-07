@@ -40,23 +40,40 @@ class UserRegistration(APIView):
     def post(self, request, *args, **kwargs):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
+            email = serializer.validated_data['email']
+            username = serializer.validated_data['username']
+            
+            # Check if a user with the provided email already exists
+            if User.objects.filter(email=email).exists():
+                return Response({'message': 'User with this email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Check if a user with the provided username already exists
+            if User.objects.filter(username=username).exists():
+                return Response({'message': 'User with this username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # If both email and username are unique, proceed with registration
             serializer.save()
             return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # Handles user login
 class UserLogin(APIView):
     permission_classes = [AllowAny]
     def post(self, request, *args, **kwargs):
-        username = request.data.get('username')
+        identifier = request.data.get('identifier')
         password = request.data.get('password')
-        user = authenticate(username=username, password=password)
+        
+        if '@' in identifier:
+            user = authenticate(email=identifier, password=password)
+        else:
+            user = authenticate(username=identifier, password=password)
         if user:
             token, _ = Token.objects.get_or_create(user=user)
             return Response({'token': token.key}, status=status.HTTP_200_OK)
+        
         return Response({'message': 'Invalid login credentials'}, status=status.HTTP_400_BAD_REQUEST)
     
-
     
 # MUSICBRAINZ API REQUESTS 
 # Returns a list of relevant searches by artist name 
