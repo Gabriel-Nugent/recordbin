@@ -57,6 +57,13 @@ button.result-overlay:focus {
 .result-details h2,
 .result-details h3 {
   margin: 0px;
+  transition-duration: 100ms;
+}
+
+h1.result-name:hover,
+h1.result-overlay:focus {
+  cursor: pointer;
+  color: var(--default-tertiary-color);
 }
 
 .result-details h1 {

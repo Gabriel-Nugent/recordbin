@@ -6,7 +6,8 @@ function Footer() {
   return(
     <footer>
       <div>
-        Developed by: [Gabriel Nugent] , [Dustin Reyes] , [Caleb Alvarez] for our Human Factors Project
+        Developed by: [Gabriel Nugent] , [Dustin Reyes] , [Caleb Alvarez] for our Human Factors Project.
+        Music data courtesy of MusicBrainz. Cover art courtesy of the Cover Art Archive.
       </div>
     </footer>
   );

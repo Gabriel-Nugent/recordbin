@@ -1,9 +1,10 @@
 div.CreateAcc {
   height: 100%;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
 }
 
 div.CreateAcc-area {
-  height: calc(90%);
   min-height: 800px;
   width: 100%;
   background-color: var(--default-primary-color);
@@ -14,8 +15,6 @@ div.CreateAcc-area {
 
 main.CreateAcc {
   background-color: transparent;
-  height: 600px;
-  width: 800px;
   display: grid;
   grid-template-columns: 400px auto;
   border-radius: 5px;

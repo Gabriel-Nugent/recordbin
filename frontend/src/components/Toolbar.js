@@ -65,7 +65,7 @@ function Toolbar(props) {
         <SearchBar />
         <div id="right_links">
           <Link to="/signin" id="sign-in">Sign in</Link>
-          <Link to="/create-account" id="create-account" >Create Account</Link>
+          <Link to="/create-account" id="create-account" >Create an Account</Link>
         </div>
       </header>
     );

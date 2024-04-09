@@ -1,13 +1,15 @@
-#results-page, #loading-page{
+#results-page {
+  padding: 40px 100px 80px 100px;
   background-color: var(--default-primary-color);
-  min-height: calc(100% - 115px);
+  display: flex;
+  flex-direction: column;
 }
 
-#loading-page {
+main.no-results {
+  background-color: var(--default-primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 115px);
 }
 
 h2.search-header {

@@ -3,11 +3,12 @@ div.profile {
 }
 
 main.profile-page {
-  height: calc(100% - 115px);
+  height: fit-content;
   background-color: var(--default-primary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 80px 100px 80px 100px;
 }
 
 h1.profile-page {
@@ -19,30 +20,53 @@ h1.profile-page {
 }
 
 div.profile-content {
-  background-color: white;
+  background-color: transparent;
   width: 100%;
-  height: 80%;
+  display: grid;
+  grid-template-columns: min-content auto;
+  justify-content: space-around;
 }
 
 div.profile-bio {
-  background-color: blue;
+  background-color: transparent;
   height: 100%;
-  width: 40%;
-  max-width: 400px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-div.profile-bio img {
+div.profile-image{
+  box-sizing: border-box;
   padding: 10px;
-  background-color: blueviolet;
+  background-color: transparent;
   height: 300px;
-  width: calc(100% - 20px);
+  width: calc(100%);
   border: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid white ;
 }
 
-div.profile-bio section {
+section.profile-bio *{
+  text-align: center;
+}
 
+section.list-area {
+  background-color: transparent;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 800px;
+}
+
+section.list-area h2 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+  margin: 0px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid ;
+  border-top: 1px solid ;
 }
 

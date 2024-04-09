@@ -8,32 +8,13 @@ html, body {
 
 .App {
   height: 100%;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
 }
 
-#home {
+main.home-page {
   background-color: var(--default-primary-color);
-  background-size: 56px 56px;
-  background-position: 0 0,28px 28px;
-  height: calc(100% - 155px);
-  padding: 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-}
-
-#album_of_the_day {
-  background-color: var(--default-tertiary-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#album_of_the_day img{
-  height: 200px;
-  width: 200px;
-}
-
-#news_section {
-  background-color: var(--default-tertiary-color);
 }

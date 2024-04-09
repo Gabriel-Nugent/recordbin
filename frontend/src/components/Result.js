@@ -10,7 +10,7 @@ function Result(props) {
   const navigate = useNavigate();
 
   const goto = () => {
-    navigate(`/release/${props.artist}/${props.name}`);
+    navigate(`/release/${props.group_id}/${props.id}`);
   }
 
   return(
@@ -25,14 +25,20 @@ function Result(props) {
         }
       </div>
       <div className="result-details" id={props.id}>
-        <h1>
+        <h1 className="result-name" onClick={goto}>
           {props.name}
         </h1>
         <h2>
           {props.artists}
         </h2>
         <p>
+          {props.type}
+        </p>
+        <p>
           {props.date}
+        </p>
+        <p>
+          {props.tags}
         </p>
       </div>
     </div>

@@ -1,44 +1,56 @@
-.searchbar {
-  height: 40px;
-  width: 400px;
+form.searchbar {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+form.searchbar label,
+form.searchbar button{
+  background-color: var(--default-primary-color);
+  border: 2px solid rgb(89, 88, 88);
+  border-radius: 10px;
+  padding: 5px 5px ;
+  transition-duration: 200ms;
+}
+
+form.searchbar label:hover,
+form.searchbar label:focus,
+form.searchbar label:has(input.bar:focus) {
+  background-color: var(--default-text-color);
+  border: 2px solid var(--default-tertiary-color);
+  border-radius: 10px;
+}
+
+label.album-bar {
   display: flex;
   align-items: center;
-  justify-self: center;
-  padding-left: 5px;
-  border-radius: 3px;
-  background-color: var(--default-secondary-color);
+  justify-content: space-between;
+}
+
+input.bar {
+  font-size: 1.1em;
+  color: var(--default-secondary-color);
   color: var(--default-text-color);
-  border: solid 2px var(--default-text-select-color);
-  transition-duration: 200ms;
-  font-size: 20px;
 }
 
-.searchbar:hover, .searchbar:focus-within {
-  border: solid 2px transparent;
-  border-bottom: solid 2px var(--default-tertiary-color);
+input.bar:hover,
+input.bar:focus {
+  color: var(--default-secondary-color);
 }
 
-.searchbar .bar, .searchbar .button {
-  color: var(--default-text-color);
-  font-size: 20px;
-}
-
-.searchbar .bar{
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 100%;
-}
-
-.searchbar .button {
-  cursor: pointer;
-  transition: 100ms;
+button#search-submit {
   background-color: transparent;
-  border: 0px;
-  padding-right: 10px;
-  padding-left: 10px;
+  height: 90%;
+  padding: 0px 10px;
+  color: rgb(89, 88, 88);
 }
 
-.searchbar .button:hover, .searchbar .button:focus{
-  color: var(--default-tertiary-color);
+button#search-submit:hover,
+button#search-submit:focus {
+  cursor: pointer;
+  background-color: var(--default-tertiary-color);
+  border-color: var(--default-text-color);
+  color: var(--default-text-color);
 }
-
