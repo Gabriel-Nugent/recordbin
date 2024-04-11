@@ -24,7 +24,7 @@ function Profile() {
     try {
       const response = await client.get('/api/profile/',{
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
       return response.data;

@@ -5,25 +5,22 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
-from django.shortcuts import render
 from django.contrib.auth import authenticate 
 from .models import *
+from .models import Profile
 from .serializers import *
 
 import musicbrainzngs
 
 # DJANGO APIVIEWS
 class Profile(APIView):
-    # permission_classes = [IsAuthenticated]  # Ensure user is authenticated
+    permission_classes = [IsAuthenticated]  # Ensure user is authenticated
 
-    def get(self, request, username):  # Accept username parameter
-        try:
-            # Retrieve the profile of the user specified by the username
-            profile = Profile.objects.get(user__username=username)
-            serializer = ProfileSerializer(profile)
-            return Response(serializer.data)
-        except Profile.DoesNotExist:
-            return Response({"message": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    def get(self, request):
+        # Retrieve the current user's profile
+        profile = Profile.objects.get(user=request.user)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
 
     def put(self, request):
         # Update the current user's profile
