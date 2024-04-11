@@ -18,3 +18,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
             user = User.objects.create_user(**validated_data) # hashing password
             return user
+
+class ListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = List
+        fields = ['title', 'profile']
+    
+class AlbumInListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlbumInList
+        fields = ['list', 'album']

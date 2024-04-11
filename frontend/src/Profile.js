@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Toolbar from "./components/Toolbar";
 import Footer from "./components/Footer";
@@ -10,48 +11,46 @@ import "./styles/Profile.css"
 import ListPreview from './components/ListPreview';
 import LoadingPage from './components/LoadingPage';
 
+const client = axios.create({
+  baseURL: "http://127.0.0.1:8000"
+})
+
 function Profile() {
   const { user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [user, setUserInfo] = useState({});
 
   async function get_user_info() {
-    // call api request
+    try {
+      const response = await client.get('/api/profile/',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      // Handle error (e.g., display error message)
+      console.error('Error fetching user info:', error);
+      return null;
+    }
   }
 
   useEffect(() => {
-    setLoading(true)
-
-    // user id from url
-    const id = user_id;
+    setLoading(true);
 
     const fetch_data = async () => {
-      if (id === "me") {
-        // handle user is self
-      }
-
       const user_data = await get_user_info();
-
-      let user_info;
-
-      // default case
-      if (user_data == undefined) {
-        user_info = {
-          username: "username",
-          name: "name",
-          dob: "birthday",
-          location: "location",
-          favorite_artists: "artist1, artist2, artist 3"
-        }
+      if (user_data) {
+        setUserInfo(user_data);
+        setLoading(false);
+      } else {
+        // Handle error or show error message
+        setLoading(false);
       }
-  
-      setUserInfo(user_info);
-      setLoading(false);
-    }
-  
-    fetch_data()
-      .catch(console.error);
-  
+    };
+
+    fetch_data().catch(console.error);
+
   }, []);
 
   return (

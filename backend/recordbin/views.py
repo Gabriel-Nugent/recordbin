@@ -3,21 +3,27 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.contrib.auth import authenticate 
 from .models import *
-from .serializers import ProfileSerializer
-from .serializers import UserRegistrationSerializer
+from .serializers import *
 
 import musicbrainzngs
 
 # DJANGO APIVIEWS
 class Profile(APIView):
-    def get(self, request):
-        # Retrieve the current user's profile
-        profile = Profile.objects.get(user=request.user)
-        serializer = ProfileSerializer(profile)
-        return Response(serializer.data)
+    # permission_classes = [IsAuthenticated]  # Ensure user is authenticated
+
+    def get(self, request, username):  # Accept username parameter
+        try:
+            # Retrieve the profile of the user specified by the username
+            profile = Profile.objects.get(user__username=username)
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return Response({"message": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request):
         # Update the current user's profile
@@ -73,6 +79,51 @@ class UserLogin(APIView):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         
         return Response({'message': 'Invalid login credentials'}, status=status.HTTP_400_BAD_REQUEST)
+    
+# Creates a user list
+class CreateList(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request, *args, **kwargs):
+        title = request.data.get('title')
+        profile = request.user.profile
+        
+        # Check if a list with the provided title already exists for this user
+        if List.objects.filter(title=title, profile=profile).exists():
+            return Response({'message': 'You already have a list with this title'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Create a new list
+        serializer = ListSerializer(data={'title': title, 'profile': profile})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# Add album to a list    
+class AddAlbumToList(APIView):
+    def post(self, request, *args, **kwargs):
+        list_id = request.data.get('list_id')
+        album_id = request.data.get('album_id')
+        
+        # Check if both list_id and album_id are provided
+        if not list_id or not album_id:
+            return Response({'message': 'Both list_id and album_id are required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if the list exists and belongs to the user
+        try:
+            list_instance = List.objects.get(pk=list_id, profile=request.user.profile)
+        except List.DoesNotExist:
+            return Response({'message': 'List does not exist or does not belong to the user'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Check if the album is already in the list
+        if AlbumInList.objects.filter(list=list_instance, album=album_id).exists():
+            return Response({'message': 'Album is already in the list'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Create a new entry in AlbumInList
+        serializer = AlbumInListSerializer(data={'list': list_instance.id, 'album': album_id.id})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
 # MUSICBRAINZ API REQUESTS 
@@ -166,5 +217,3 @@ def releases_by_artist(request):
                 return JsonResponse({'error': 'An error occurred while fetching release data.'}, status=500)
         else:
             return JsonResponse({'error': 'Please provide an artist id.'}, status=400)
-        
-

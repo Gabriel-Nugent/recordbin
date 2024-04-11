@@ -30,6 +30,7 @@ urlpatterns = [
     path('releases-by-artist/', releases_by_artist, name='releases_by_artist'),
     path('register/', UserRegistration.as_view(), name='register'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('login/', UserLogin.as_view(), name='user_login')
+    path('login/', UserLogin.as_view(), name='user_login'),
+    path('create-list/', CreateList.as_view(), name='create_list'),
 
 ]

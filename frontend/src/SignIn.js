@@ -16,7 +16,7 @@ const client = axios.create({
 
 function SignIn() {
 
-  const [identifier, setIdentifier] = useState(""); // Change 'username' to 'identifier'
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -27,6 +27,10 @@ function SignIn() {
         identifier: identifier, // Send 'identifier' instead of 'username'
         password: password
       });
+      const { token } = response.data;
+      // Store the token securely (e.g., in local storage)
+      localStorage.setItem('token', token);
+      
       console.log('Login successful:', response.data);
 
       // Redirect to the desired page upon successful login
