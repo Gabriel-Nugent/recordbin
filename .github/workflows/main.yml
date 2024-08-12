@@ -31,7 +31,7 @@ jobs:
           docker pull ${{ env.WEBSITE_IMAGE }} || true
       - name: Build images
         run: |
-          docker-compose -f docker-compose.ci.yml build
+          docker build -t recordbin:latest .
       - name: Push images
         run: |
           docker push ${{ env.WEBSITE_IMAGE }}
