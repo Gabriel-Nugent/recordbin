@@ -31,7 +31,7 @@ jobs:
           docker pull ${{ env.WEBSITE_IMAGE }} || true
       - name: Build images
         run: |
-          docker build -t recordbin:latest .
+          docker build -t ${{ env.WEBSITE_IMAGE }} .
       - name: Push images
         run: |
           docker push ${{ env.WEBSITE_IMAGE }}
