@@ -81,6 +81,7 @@ jobs:
           scp -o StrictHostKeyChecking=no -r ./.env ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }}:
           ssh -o StrictHostKeyChecking=no ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
               docker login ghcr.io -u ${{secrets.NAMESPACE}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}
+              docker container rm $(docker container ls -aq) -f
               docker pull ${{ env.WEBSITE_IMAGE }}
               docker run -dp 80:80 ${{ env.WEBSITE_IMAGE }}
               docker logout
